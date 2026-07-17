@@ -4,6 +4,7 @@ import io.github.bortoletoeric.produtosapi.model.Produto;
 import io.github.bortoletoeric.produtosapi.repository.ProdutoRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -43,5 +44,10 @@ public class ProdutoControler {
         produto.setId(id);
         produtoRepository.save(produto);
         return produto;
+    }
+
+    @GetMapping
+    public List<Produto> buscarPorNome(@RequestParam("nome") String nome) {
+        return produtoRepository.findByNome(nome);
     }
 }
